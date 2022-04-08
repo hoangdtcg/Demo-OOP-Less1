@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sun Battle</title>
+    <script src="Fighter.js"></script>
+</head>
+<body>
+<div>
+    <h1 id="fighter1-name">Name</h1>
+    <p id="fighter1-hp">HP</p>
+    <button onclick="attack(trung,duong)">Attack</button>
+</div>
+
+<div>
+    <h1 id="fighter2-name">Name</h1>
+    <p id="fighter2-hp">HP</p>
+    <button onclick="attack(duong,trung)">Attack</button>
+</div>
+<script>
+    let trung = new Fighter("Trung châu");
+    let duong = new Fighter("Dương bé tí hon");
+    
+    function display() {
+        document.getElementById('fighter1-name').innerHTML = trung.name;
+        document.getElementById('fighter1-hp').innerHTML = trung.hp;
+
+        document.getElementById('fighter2-name').innerHTML = duong.name;
+        document.getElementById('fighter2-hp').innerHTML = duong.hp;
+    }
+
+    function attack(player1,player2) {
+        player1.attack(player2);
+        display();
+    }
+
+    display();
+</script>
+</body>
+</html>

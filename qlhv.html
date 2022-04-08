@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quan ly hoc vien C0322H1</title>
+</head>
+<body>
+<button onclick="addStudent()">Thêm học viên</button>
+<!--<button onclick="removeStudent()">Xoá học viên</button>-->
+<table id="student-list"></table>
+<script>
+    let students = [
+        ["Tài Nụ Cười",16,"Ba Tư"],
+        ["Thịnh cơ bắp",21,"Hà Không Bắc"],
+        ["Zun Zui Zẻ",30,"Giang Nội"]
+    ];
+
+    //Object - Đối tượng
+    //Key : value
+    let tai = {
+        name: "Tài nụ cười",
+        age: 16,
+        address: "Ba Tư",
+
+        smile: function (){//setter
+            alert(this.name + " " +this.address+ " đang cười nè");
+        },
+
+        getInfo() { //getter
+            let info = "Độc thân thân toàn độc";
+            return info;
+        },
+
+        countingStart(number){
+            for (let i = 0; i < number; i++) {
+                console.log(this.name + " đếm "+i + " ông sao");
+            }
+        }
+    }
+
+    let thang = {
+        name: "Thắng thành thật",
+        age: 18,
+        address: "Xứ sở trai nờ",
+
+        smile: function (){//setter
+            alert(this.name + " " +this.address+ " đang cười nè");
+        },
+
+        getInfo() { //getter
+            let info = "Độc thân thân toàn độc";
+            return info;
+        },
+
+        countingStart(number){
+            for (let i = 0; i < number; i++) {
+                console.log(this.name + " đếm "+i + " ông sao");
+            }
+        }
+    }
+    console.log(tai["age"]);
+    console.log(tai.address);
+    console.log(thang.name)
+    // student.smile();
+    // alert(student.getInfo());//string
+    thang.countingStart(5);
+
+    function displayAllStudent() {
+        let str = `<tr>
+                    <th>STT</th>
+                    <th>Họ và Tên</th>
+                    <th>Kỉ lục sống</th>
+                    <th>Quê hương</th>
+                    <th>Hành động</th>
+                   </tr>`;
+
+        for (let i = 0; i < students.length; i++) {
+            str += `<tr>
+                    <td>${i+1}</td>
+                    <td>${students[i][0]}</td>
+                    <td>${students[i][1]}</td>
+                    <td>${students[i][2]}</td>
+                    <td><button onclick="removeStudent(${i})">Xoá</button></td>
+                    <td><button onclick="updateStudent(${i})">Cập nhật</button></td>
+                  </tr>`;
+        }
+        document.getElementById('student-list').innerHTML = str;
+    }
+    displayAllStudent();
+
+    function addStudent() {
+        let studentName = prompt("Nhập tên");
+        let studentAge = prompt("Nhập tuổi");
+        let studentCountry = prompt("Nhập quê");
+        let student = [studentName, studentAge, studentCountry];
+        students.unshift(student);
+        displayAllStudent();
+    }
+
+    function removeStudent(index) {
+        // let index = +prompt("Xoá ở vị trí nào");
+        let sure = confirm("Chắc không?");
+        if(sure){
+            students.splice(index,1);
+            displayAllStudent();
+        }
+    }
+
+    function updateStudent(index) {
+        students[index] = prompt("Nhập tên mới",students[index]);
+        displayAllStudent();
+    }
+</script>
+</body>
+</html>
